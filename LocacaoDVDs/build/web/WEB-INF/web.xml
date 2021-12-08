@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <servlet>
+        <servlet-name>GenerosServlet</servlet-name>
+        <servlet-class>locacaodvds.controladores.GenerosServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ClassificacoesEtariasServlet</servlet-name>
+        <servlet-class>locacaodvds.controladores.ClassificacoesEtariasServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AtoresServlet</servlet-name>
+        <servlet-class>locacaodvds.controladores.AtoresServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DVDsServlet</servlet-name>
+        <servlet-class>locacaodvds.controladores.DVDsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GenerosServlet</servlet-name>
+        <url-pattern>/generosServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ClassificacoesEtariasServlet</servlet-name>
+        <url-pattern>/classificacoesEtariasServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AtoresServlet</servlet-name>
+        <url-pattern>/atoresServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DVDsServlet</servlet-name>
+        <url-pattern>/dVDsServlet</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>
