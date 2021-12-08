@@ -1,0 +1,61 @@
+CREATE SCHEMA `locacao_dvds` ;
+
+USE `locacao_dvds` ;
+
+CREATE TABLE genero(
+	id INT NOT NULL AUTO_INCREMENT,
+	descricao VARCHAR(30) NOT NULL,
+	PRIMARY KEY (id)
+) ENGINE = InnoDB;
+
+
+CREATE TABLE classificacao_etaria(
+	id INT NOT NULL AUTO_INCREMENT,
+	descricao VARCHAR(30) NOT NULL,
+	PRIMARY KEY (id)
+) ENGINE = InnoDB;
+
+CREATE TABLE ator(
+	id INT NOT NULL AUTO_INCREMENT,
+	nome VARCHAR(30) NOT NULL,
+	sobrenome VARCHAR(30) NOT NULL,
+	data_de_estreia DATETIME NULL,
+	PRIMARY KEY (id)
+) ENGINE = InnoDB;
+
+CREATE TABLE dvd(
+	id INT NOT NULL AUTO_INCREMENT,
+	titulo VARCHAR(60) NOT NULL,
+	ano_de_lancamento INT NOT NULL,
+	ator_principal_id INT NOT NULL,
+	ator_coadjuvante_id INT NOT NULL,
+	data_de_lancamento DATETIME NOT NULL,
+	duracao_em_minutos INT NOT NULL,
+	genero_id INT NOT NULL,
+	classificacao_etaria_id INT NOT NULL,
+	PRIMARY KEY (id),
+	INDEX fk_dvd_ator_principal (ator_principal_id ASC),
+	CONSTRAINT fk_dvd_ator_principal
+		FOREIGN KEY (ator_principal_id)
+		REFERENCES ator (id)
+		ON DELETE RESTRICT
+		ON UPDATE CASCADE,
+	INDEX fk_dvd_ator_coadjuvante (ator_coadjuvante_id ASC),
+	CONSTRAINT fk_dvd_ator_coadjuvante
+		FOREIGN KEY (ator_coadjuvante_id)
+		REFERENCES ator (id)
+		ON DELETE RESTRICT
+		ON UPDATE CASCADE,
+	INDEX fk_dvd_genero (genero_id ASC),
+	CONSTRAINT fk_dvd_genero
+		FOREIGN KEY (genero_id)
+		REFERENCES genero (id)
+		ON DELETE RESTRICT
+		ON UPDATE CASCADE,
+	INDEX fk_dvd_classificacao_etaria (classificacao_etaria_id ASC),
+	CONSTRAINT fk_dvd_classificacao_etaria
+		FOREIGN KEY (classificacao_etaria_id)
+		REFERENCES classificacao_etaria(id)
+		ON DELETE RESTRICT
+		ON UPDATE CASCADE	
+) ENGINE = InnoDB;
